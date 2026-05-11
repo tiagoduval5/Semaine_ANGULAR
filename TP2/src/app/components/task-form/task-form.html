@@ -1,0 +1,10 @@
+<form (ngSubmit)="onSubmit()" class="form">
+  <input
+    type="text"
+    [(ngModel)]="newTitle"
+    name="title"
+    placeholder="Que dois-tu faire ?"
+    required
+  />
+  <button type="submit">Ajouter</button>
+</form>

@@ -1,0 +1,6 @@
+<div class="task" [class.done]="task.done">
+  <input type="checkbox" [checked]="task.done" (change)="onToggle()" />
+  <span class="title">{{ task.title }}</span>
+  <small class="date">{{ task.createdAt | date: 'short' }}</small>
+  <button type="button" class="delete-btn" (click)="onDelete()">🗑️</button>
+</div>

@@ -1,0 +1,35 @@
+<div class="container">
+  <h1>📝 Ma TodoList</h1>
+
+  <app-task-form (add)="onAdd($event)"></app-task-form>
+
+  <div class="filters">
+    <button type="button" (click)="setFilter('all')" [class.active]="(filter$ | async) === 'all'">
+      Toutes
+    </button>
+    <button type="button" (click)="setFilter('active')" [class.active]="(filter$ | async) === 'active'">
+      Actives
+    </button>
+    <button type="button" (click)="setFilter('done')" [class.active]="(filter$ | async) === 'done'">
+      Terminées
+    </button>
+  </div>
+
+  @if (filteredTasks$ | async; as tasks) {
+    @if (tasks.length === 0) {
+      <p class="empty">Aucune tâche à afficher 🎉</p>
+    } @else {
+      <ul class="task-list">
+        @for (task of tasks; track task.id) {
+          <li>
+            <app-task-item
+              [task]="task"
+              (toggle)="onToggle($event)"
+              (delete)="onDelete($event)"
+            ></app-task-item>
+          </li>
+        }
+      </ul>
+    }
+  }
+</div>
