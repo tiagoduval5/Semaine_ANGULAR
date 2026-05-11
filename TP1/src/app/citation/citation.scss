@@ -1,0 +1,28 @@
+.citation {
+    max-width: 420px;
+    padding: 16px;
+    border: 1px solid #dcdcdc;
+    border-radius: 8px;
+    background-color: #fff;
+    color: #222;
+    font-family: Arial, sans-serif;
+  }
+  
+  .citation p {
+    margin: 0 0 12px 0;
+    font-size: 16px;
+    line-height: 1.4;
+  }
+  
+  .citation button {
+    padding: 8px 12px;
+    border: 1px solid #bdbdbd;
+    border-radius: 6px;
+    background: #f5f5f5;
+    color: #222;
+    cursor: pointer;
+  }
+  
+  .citation button:hover {
+    background: #ebebeb;
+  }

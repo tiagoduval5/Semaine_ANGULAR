@@ -1,0 +1,27 @@
+.meteo-carte {
+    max-width: 380px;
+    padding: 20px;
+    border: 1px solid #dcdcdc;
+    border-radius: 10px;
+    background: #ffffff;
+    color: #222;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    font-family: Arial, sans-serif;
+  }
+  
+  h2 {
+    margin: 0 0 12px;
+    font-size: 28px;
+    font-weight: 700;
+  }
+  
+  .temperature {
+    margin: 0 0 14px;
+    font-size: 34px;
+    font-weight: 700;
+  }
+  
+  p {
+    margin: 6px 0;
+    font-size: 16px;
+  }
