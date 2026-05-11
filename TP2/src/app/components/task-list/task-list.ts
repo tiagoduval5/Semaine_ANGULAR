@@ -32,6 +32,8 @@ export class TaskListComponent {
     }),
   );
 
+  remaining$ = this.taskService.getRemainingCount();
+
   setFilter(f: Filter): void {
     this.filterSubject.next(f);
   }
@@ -46,5 +48,9 @@ export class TaskListComponent {
 
   onDelete(id: number): void {
     this.taskService.deleteTask(id);
+  }
+
+  onClearCompleted(): void {
+    this.taskService.clearCompleted();
   }
 }

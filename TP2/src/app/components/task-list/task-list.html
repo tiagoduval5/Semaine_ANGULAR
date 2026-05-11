@@ -32,4 +32,11 @@
       </ul>
     }
   }
+
+  <footer class="footer">
+    @if (remaining$ | async; as n) {
+      <p class="remaining">{{ n }} tâche{{ n !== 1 ? 's' : '' }} restante{{ n !== 1 ? 's' : '' }}</p>
+    }
+    <button type="button" class="clear-done" (click)="onClearCompleted()">Effacer les terminées</button>
+  </footer>
 </div>

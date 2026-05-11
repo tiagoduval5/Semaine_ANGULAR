@@ -46,3 +46,33 @@
   color: #888;
   padding: 32px;
 }
+
+.footer {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid #eee;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.remaining {
+  margin: 0;
+  color: #555;
+  font-size: 15px;
+}
+
+.clear-done {
+  padding: 8px 14px;
+  background: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+
+  &:hover {
+    background: #ebebeb;
+  }
+}
