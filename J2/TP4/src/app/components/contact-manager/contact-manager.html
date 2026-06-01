@@ -1,0 +1,80 @@
+<div class="manager">
+  <h1>📇 Carnet de contacts</h1>
+
+  <form
+    #f="ngForm"
+    class="form"
+    (submit)="
+      $event.preventDefault();
+      enregistrer({
+        nom: nomInput.value,
+        email: emailInput.value,
+        tel: telInput.value,
+      });
+      nomInput.value = '';
+      emailInput.value = '';
+      telInput.value = ''
+    "
+  >
+    <h3>{{ enEdition() ? '✏️ Modifier' : '➕ Nouveau contact' }}</h3>
+
+    <input
+      #nomInput
+      type="text"
+      placeholder="Nom"
+      [value]="enEdition()?.nom ?? ''"
+      required
+    />
+    <input
+      #emailInput
+      type="email"
+      placeholder="Email"
+      [value]="enEdition()?.email ?? ''"
+      required
+    />
+    <input
+      #telInput
+      type="tel"
+      placeholder="Tél"
+      [value]="enEdition()?.tel ?? ''"
+    />
+
+    <div class="actions">
+      <button type="submit">
+        {{ enEdition() ? 'Mettre à jour' : 'Ajouter' }}
+      </button>
+      @if (enEdition()) {
+        <button type="button" class="ghost" (click)="annulerEdition()">
+          Annuler
+        </button>
+      }
+    </div>
+  </form>
+
+  @if (loading()) {
+    <p class="info">⏳ Chargement…</p>
+  } @else if (error()) {
+    <p class="error">
+      ❌ {{ error() }} <button (click)="charger()">Réessayer</button>
+    </p>
+  } @else {
+    <ul class="liste">
+      @for (c of contacts(); track c.id) {
+        <li>
+          <div class="infos">
+            <strong>{{ c.nom }}</strong>
+            <span>{{ c.email }} · {{ c.tel }}</span>
+          </div>
+          <div class="boutons">
+            <button type="button" (click)="editer(c)">✏️</button>
+            <button type="button" class="danger" (click)="supprimer(c)">
+              🗑️
+            </button>
+          </div>
+        </li>
+      } @empty {
+        <li class="info">Aucun contact. Ajoute le premier !</li>
+      }
+    </ul>
+  }
+</div>
