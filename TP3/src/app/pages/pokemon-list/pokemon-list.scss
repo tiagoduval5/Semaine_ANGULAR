@@ -1,0 +1,61 @@
+h1 {
+  text-align: center;
+  text-transform: capitalize;
+}
+
+.search {
+  display: block;
+  width: 100%;
+  max-width: 360px;
+  margin: 0 auto 24px;
+  padding: 12px 16px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  font-size: 15px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 16px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px;
+  background: white;
+  border: 1px solid #eee;
+  border-radius: 14px;
+  text-decoration: none;
+  color: #333;
+  transition:
+    transform 0.15s,
+    box-shadow 0.15s;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+  }
+
+  img {
+    width: 96px;
+    height: 96px;
+    object-fit: contain;
+  }
+  .num {
+    font-size: 12px;
+    color: #999;
+  }
+  .name {
+    text-transform: capitalize;
+    font-weight: 600;
+  }
+}
+
+.info {
+  text-align: center;
+  color: #888;
+  padding: 32px;
+}

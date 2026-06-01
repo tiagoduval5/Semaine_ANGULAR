@@ -1,0 +1,33 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  background: #ef5350;
+  color: white;
+
+  .logo {
+    font-size: 20px;
+    font-weight: 700;
+    text-decoration: none;
+    color: white;
+  }
+
+  .links a {
+    color: white;
+    text-decoration: none;
+    margin-left: 16px;
+    padding: 6px 10px;
+    border-radius: 8px;
+
+    &.actif {
+      background: rgba(255, 255, 255, 0.25);
+    }
+  }
+}
+
+main {
+  max-width: 960px;
+  margin: 24px auto;
+  padding: 0 16px;
+}

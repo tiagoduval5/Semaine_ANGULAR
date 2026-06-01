@@ -1,0 +1,15 @@
+<nav class="navbar">
+  <a routerLink="/" class="logo">🔴 Pokédex</a>
+  <div class="links">
+    <a routerLink="/" routerLinkActive="actif" [routerLinkActiveOptions]="{ exact: true }">
+      Liste
+    </a>
+    <a routerLink="/favoris" routerLinkActive="actif">
+      ⭐ Favoris ({{ favoris.nombre() }})
+    </a>
+  </div>
+</nav>
+
+<main>
+  <router-outlet />
+</main>

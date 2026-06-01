@@ -1,0 +1,14 @@
+<h1>⭐ Mes favoris</h1>
+
+@if (favoris.favoris().length === 0) {
+  <p class="info">Aucun favori pour l'instant. Ajoute-en depuis une fiche Pokémon !</p>
+} @else {
+  <ul class="liste">
+    @for (name of favoris.favoris(); track name) {
+      <li>
+        <a [routerLink]="['/pokemon', name]">{{ name }}</a>
+        <button (click)="favoris.basculer(name)">✖</button>
+      </li>
+    }
+  </ul>
+}

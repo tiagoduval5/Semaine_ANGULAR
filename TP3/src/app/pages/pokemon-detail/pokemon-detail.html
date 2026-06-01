@@ -1,0 +1,42 @@
+<a routerLink="/" class="back">← Retour à la liste</a>
+
+@if (pokemon(); as p) {
+  <div class="detail">
+    <div class="header">
+      <h1>{{ p.name }} <small>#{{ p.id }}</small></h1>
+      <button class="fav" (click)="favoris.basculer(p.name)">
+        {{ favoris.estFavori(p.name) ? '⭐ Retirer' : '☆ Favori' }}
+      </button>
+    </div>
+
+    <img
+      [src]="p.sprites.other['official-artwork'].front_default"
+      [alt]="p.name"
+      class="artwork"
+    />
+
+    <div class="types">
+      @for (t of p.types; track t.type.name) {
+        <span class="type">{{ t.type.name }}</span>
+      }
+    </div>
+
+    <ul class="infos">
+      <li><strong>Taille :</strong> {{ p.height / 10 }} m</li>
+      <li><strong>Poids :</strong> {{ p.weight / 10 }} kg</li>
+    </ul>
+
+    <h3>Statistiques</h3>
+    <ul class="stats">
+      @for (s of p.stats; track s.stat.name) {
+        <li>
+          <span class="label">{{ s.stat.name }}</span>
+          <span class="bar"><span class="fill" [style.width.%]="s.base_stat / 2"></span></span>
+          <span class="val">{{ s.base_stat }}</span>
+        </li>
+      }
+    </ul>
+  </div>
+} @else {
+  <p class="info">⏳ Chargement de {{ name() }}…</p>
+}
