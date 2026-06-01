@@ -11,6 +11,18 @@
       "email": "tiago@gmail.com",
       "tel": "0707070707",
       "id": "k18bOE7rGVA"
+    },
+    {
+      "nom": "Tiago DUVAL",
+      "email": "t.duval@ecole-ipssi.net",
+      "tel": "07 68 81 58 25",
+      "id": "VEBDEEoz02I"
+    },
+    {
+      "nom": "test",
+      "email": "a.@a.com",
+      "tel": "0123456789",
+      "id": "VM799Qca_7A"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
