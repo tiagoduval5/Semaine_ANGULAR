@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { HelloComponent } from './hello/hello';   // ← AJOUTER
+import { HelloComponent } from './hello/hello';
 import { ProfilComponent } from './profil/profil'; 
-import { CitationComponent } from './citation/citation';  // ← AJOUTER
-import { MeteoComponent } from './meteo/meteo';  // ← AJOUTER
+import { CitationComponent } from './citation/citation';
+import { MeteoComponent } from './meteo/meteo';
 
 @Component({
   selector: 'app-root',

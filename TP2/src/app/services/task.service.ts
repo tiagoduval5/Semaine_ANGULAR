@@ -19,7 +19,7 @@ export class TaskService {
     return this.tasksSubject.asObservable();
   }
 
-  /** Nombre de tâches encore à faire (pour affichage simple). */
+  /** Nombre de tâches encore à faire */
   getRemainingCount(): Observable<number> {
     return this.getTasks().pipe(map((tasks) => tasks.filter((t) => !t.done).length));
   }
