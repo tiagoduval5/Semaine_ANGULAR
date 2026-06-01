@@ -7,9 +7,25 @@
   (input)="onSearch($event)"
 />
 
-@if (pokemons().length === 0) {
+@if (chargement()) {
   <p class="info">⏳ Chargement des Pokémon…</p>
 } @else {
+  <div class="preview" aria-live="polite">
+    @if (enRecherche()) {
+      <p class="preview-main">
+        <strong>{{ cartesAffichees() }}</strong>
+        résultat{{ cartesAffichees() > 1 ? 's' : '' }} sur la page
+        {{ pageCourante() }}
+      </p>
+      <p class="preview-sub">Recherche limitée à la page actuelle</p>
+    } @else {
+      <p class="preview-main">
+        Pokémon <strong>#{{ debut() }}</strong> à <strong>#{{ fin() }}</strong>
+        sur <strong>{{ total() }}</strong>
+      </p>
+    }
+  </div>
+
   <div class="grid">
     @for (p of filtres(); track p.id) {
       <a class="card" [routerLink]="['/pokemon', p.name]">
@@ -21,4 +37,30 @@
       <p class="info">Aucun Pokémon ne correspond à « {{ recherche() }} »</p>
     }
   </div>
+
+  @if (!enRecherche()) {
+    <nav class="pagination" aria-label="Pagination Pokédex">
+      <button
+        type="button"
+        class="page-btn"
+        [disabled]="!peutPrecedent() || chargement()"
+        (click)="precedent()"
+      >
+        ← Précédent
+      </button>
+
+      <span class="page-indicator">
+        {{ pageCourante() }} / {{ totalPages() }}
+      </span>
+
+      <button
+        type="button"
+        class="page-btn"
+        [disabled]="!peutSuivant() || chargement()"
+        (click)="suivant()"
+      >
+        Suivant →
+      </button>
+    </nav>
+  }
 }

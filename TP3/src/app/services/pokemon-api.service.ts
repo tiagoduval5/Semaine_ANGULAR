@@ -12,12 +12,17 @@ export class PokemonApiService {
   private http = inject(HttpClient);
   private baseUrl = 'https://pokeapi.co/api/v2';
 
-  getList(limit = 151): Observable<PokemonPreview[]> {
+  getList(
+    limit = 151,
+    offset = 0,
+  ): Observable<{ items: PokemonPreview[]; total: number; hasMore: boolean }> {
     return this.http
-      .get<PokemonListResponse>(`${this.baseUrl}/pokemon?limit=${limit}`)
+      .get<PokemonListResponse>(
+        `${this.baseUrl}/pokemon?limit=${limit}&offset=${offset}`,
+      )
       .pipe(
-        map((res) =>
-          res.results.map((p) => {
+        map((res) => ({
+          items: res.results.map((p) => {
             const id = Number(p.url.split('/').filter(Boolean).pop());
             return {
               name: p.name,
@@ -25,7 +30,9 @@ export class PokemonApiService {
               image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`,
             };
           }),
-        ),
+          total: res.count,
+          hasMore: res.next !== null,
+        })),
       );
   }
 
