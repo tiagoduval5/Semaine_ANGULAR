@@ -1,0 +1,39 @@
+<a routerLink="/">Retour</a>
+
+@if (loading()) {
+  <p>Chargement...</p>
+} @else if (card(); as c) {
+  <div class="detail">
+    <img [src]="c.card_images[0].image_url" [alt]="c.name" />
+    <div>
+      <h1>{{ c.name }}</h1>
+      <p><strong>Type :</strong> {{ c.type }} @if (c.attribute) { · {{ c.attribute }} }</p>
+      @if (c.atk != null) {
+        <p><strong>ATK/DEF :</strong> {{ c.atk }} / {{ c.def }}</p>
+      }
+      @if (c.level) {
+        <p><strong>Niveau :</strong> {{ c.level }} *</p>
+      }
+      @if (c.archetype) {
+        <p><strong>Archetype :</strong> {{ c.archetype }}</p>
+      }
+      <p class="desc">{{ c.desc }}</p>
+
+      @if (c.card_prices?.[0]) {
+        <p>
+          <strong>Prix (Cardmarket) :</strong>
+          {{ c.card_prices?.[0]?.cardmarket_price }} EUR
+        </p>
+      }
+
+      <h3>Disponible dans {{ c.card_sets?.length || 0 }} set(s)</h3>
+      <ul>
+        @for (s of c.card_sets; track s.set_code) {
+          <li>{{ s.set_name }} ({{ s.set_rarity }})</li>
+        } @empty {
+          <li>-</li>
+        }
+      </ul>
+    </div>
+  </div>
+}

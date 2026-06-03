@@ -1,0 +1,22 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  font-family: Inter, 'Segoe UI', Roboto, Arial, sans-serif;
+  background: #08110d;
+  color: #e8fff0;
+}
+
+a {
+  color: #7dffb0;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}

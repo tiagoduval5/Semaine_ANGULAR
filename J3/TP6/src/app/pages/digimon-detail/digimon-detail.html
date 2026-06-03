@@ -1,0 +1,41 @@
+<section class="detail-page">
+  <a class="back" routerLink="/">← Retour</a>
+
+  @if (loading()) {
+    <p class="state">⏳ Chargement...</p>
+  } @else if (digimon(); as d) {
+    <section class="detail-card">
+      <img [src]="d.images?.[0]?.href" [alt]="d.name" width="220" />
+
+      <div class="content">
+        <h1>{{ d.name }}</h1>
+
+        <p><strong>Niveau :</strong> {{ d.levels?.join(', ') || '—' }}</p>
+        <p><strong>Type :</strong> {{ d.types?.join(', ') || '—' }}</p>
+        <p><strong>Attribut :</strong> {{ d.attributes?.join(', ') || '—' }}</p>
+
+        @if (d.descriptions?.length) {
+          <p class="desc">{{ d.descriptions?.[0] }}</p>
+        }
+
+        <h3>Evolue depuis</h3>
+        <ul>
+          @for (e of d.priorEvolutions; track e.id) {
+            <li><a [routerLink]="['/digimon', e.id]">{{ e.digimon }}</a> — {{ e.condition }}</li>
+          } @empty {
+            <li>—</li>
+          }
+        </ul>
+
+        <h3>Evolue vers</h3>
+        <ul>
+          @for (e of d.nextEvolutions; track e.id) {
+            <li><a [routerLink]="['/digimon', e.id]">{{ e.digimon }}</a> — {{ e.condition }}</li>
+          } @empty {
+            <li>—</li>
+          }
+        </ul>
+      </div>
+    </section>
+  }
+</section>

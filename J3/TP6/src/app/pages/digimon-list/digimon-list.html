@@ -1,0 +1,45 @@
+<section class="page">
+  <header class="top">
+    <h1>DigiDex <small>({{ favoris.nombre() }} ⭐)</small></h1>
+    <a class="fav-link" routerLink="/favoris">Voir les favoris</a>
+  </header>
+
+  <form class="search" (submit)="$event.preventDefault(); rechercher()">
+    <input [(ngModel)]="recherche" name="q" placeholder="Rechercher un Digimon..." />
+    <button type="submit">Rechercher</button>
+  </form>
+
+  @if (loading()) {
+    <p class="state">⏳ Chargement...</p>
+  } @else if (error()) {
+    <p class="error">❌ {{ error() }} <button (click)="charger()">Reessayer</button></p>
+  } @else if (page(); as p) {
+    <p class="counter">{{ p.totalElements }} Digimon(s) trouves</p>
+
+    <div class="grille">
+      @for (d of p.items; track d.id) {
+        <article class="carte">
+          <a [routerLink]="['/digimon', d.id]">
+            <img [src]="d.image" [alt]="d.name" />
+            <h3>{{ d.name }}</h3>
+          </a>
+          <button class="fav-btn" (click)="favoris.toggle(d)">
+            {{ favoris.estFavori(d.id) ? '⭐ Favori' : '☆ Ajouter aux favoris' }}
+          </button>
+        </article>
+      } @empty {
+        <p class="state">Aucun Digimon trouve.</p>
+      }
+    </div>
+
+    <nav class="pagination">
+      <span>Page {{ p.currentPage + 1 }} / {{ p.totalPages }}</span>
+      <button
+        (click)="chargerPlus()"
+        [disabled]="loadingMore() || p.currentPage + 1 >= p.totalPages"
+      >
+        {{ loadingMore() ? 'Chargement...' : 'Charger plus' }}
+      </button>
+    </nav>
+  }
+</section>

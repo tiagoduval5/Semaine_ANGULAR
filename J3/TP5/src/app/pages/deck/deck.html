@@ -1,0 +1,19 @@
+<a routerLink="/">Retour a la liste</a>
+<h1>Mon deck - {{ collection.total() }} carte(s)</h1>
+
+@if (collection.deck().length === 0) {
+  <p>Ton deck est vide. Ajoute des cartes depuis la liste.</p>
+} @else {
+  <button (click)="collection.vider()">Vider le deck</button>
+  <ul class="deck">
+    @for (entry of collection.deck(); track entry.card.id) {
+      <li>
+        <img [src]="entry.card.card_images[0].image_url_small" [alt]="entry.card.name" />
+        <span>{{ entry.card.name }}</span>
+        <span class="qte">x {{ entry.quantite }}</span>
+        <button (click)="collection.ajouter(entry.card)" [disabled]="entry.quantite >= 3">+</button>
+        <button (click)="collection.retirer(entry.card.id)">Supprimer</button>
+      </li>
+    }
+  </ul>
+}

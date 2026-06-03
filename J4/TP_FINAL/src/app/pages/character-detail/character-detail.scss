@@ -1,0 +1,50 @@
+.back {
+  display: inline-block;
+  margin-bottom: 12px;
+  color: #b8f0c8;
+  text-decoration: none;
+}
+
+.fiche {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 20px;
+}
+
+.fiche img {
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid #3d5f4a;
+}
+
+.fiche button {
+  margin: 12px 0;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #4a7a5c;
+  background: #1f3a2b;
+  color: #d4ffe0;
+  cursor: pointer;
+}
+
+.liens {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 10px;
+}
+
+.mini-carte {
+  display: block;
+  padding: 10px;
+  border: 1px solid #2f4a3a;
+  border-radius: 10px;
+  background: #101c16;
+  text-decoration: none;
+  color: inherit;
+}
+
+@media (max-width: 800px) {
+  .fiche {
+    grid-template-columns: 1fr;
+  }
+}

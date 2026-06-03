@@ -1,0 +1,36 @@
+<section class="page">
+  <h1>Contact</h1>
+  <p class="intro">Remplissez le formulaire ci-dessous pour nous envoyer un message.</p>
+
+  @if (messageEnvoye()) {
+    <p class="succes">✅ Message envoye avec succes. Merci.</p>
+  }
+
+  <form [formGroup]="formulaire" (ngSubmit)="envoyer()">
+    <label>
+      Nom
+      <input formControlName="nom" />
+      @if (formulaire.controls.nom.touched && formulaire.controls.nom.invalid) {
+        <span class="err">Minimum 3 caracteres.</span>
+      }
+    </label>
+
+    <label>
+      Email
+      <input formControlName="email" type="email" />
+      @if (formulaire.controls.email.touched && formulaire.controls.email.invalid) {
+        <span class="err">Email invalide.</span>
+      }
+    </label>
+
+    <label>
+      Message
+      <textarea formControlName="message" rows="5"></textarea>
+      @if (formulaire.controls.message.touched && formulaire.controls.message.invalid) {
+        <span class="err">Minimum 10 caracteres.</span>
+      }
+    </label>
+
+    <button type="submit" [disabled]="formulaire.invalid">Envoyer</button>
+  </form>
+</section>

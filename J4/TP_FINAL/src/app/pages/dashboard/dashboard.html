@@ -1,0 +1,42 @@
+<section class="dashboard">
+  <h1>Tableau de bord</h1>
+  <p class="intro">Quelques chiffres tires de l'API Rick and Morty.</p>
+
+  @if (chargement()) {
+    <app-loader />
+  } @else if (erreur()) {
+    <app-error-message [message]="erreur()!" (retry)="chargerStatistiques()" />
+  } @else {
+    <div class="stats">
+      <article>
+        <h2>{{ totalPersonnages() }}</h2>
+        <p>Personnages au total</p>
+        <a routerLink="/characters">Voir la liste</a>
+      </article>
+      <article>
+        <h2>{{ totalLieux() }}</h2>
+        <p>Lieux au total</p>
+        <a routerLink="/locations">Voir la liste</a>
+      </article>
+      <article>
+        <h2>{{ totalEpisodes() }}</h2>
+        <p>Episodes au total</p>
+        <a routerLink="/episodes">Voir la liste</a>
+      </article>
+      <article class="fav">
+        <h2>{{ favoris.nombre() }}</h2>
+        <p>Favoris enregistres</p>
+        <a routerLink="/favoris">Voir mes favoris</a>
+      </article>
+    </div>
+
+    <section class="repartition">
+      <h3>Repartition des favoris par statut</h3>
+      <ul>
+        <li>🟢 Vivants : {{ repartitionFavoris().Alive }}</li>
+        <li>🔴 Morts : {{ repartitionFavoris().Dead }}</li>
+        <li>⚪ Inconnus : {{ repartitionFavoris().unknown }}</li>
+      </ul>
+    </section>
+  }
+</section>

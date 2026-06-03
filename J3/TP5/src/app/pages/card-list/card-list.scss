@@ -1,0 +1,58 @@
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.filtres {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr auto auto auto;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.filtres input,
+.filtres select,
+.filtres button {
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid #d9d9d9;
+}
+
+.grille {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+.carte {
+  border: 1px solid #e3e3e3;
+  border-radius: 12px;
+  padding: 10px;
+  background: #fff;
+}
+
+.carte img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.carte h3 {
+  font-size: 14px;
+  min-height: 40px;
+}
+
+.state {
+  margin-top: 18px;
+}
+
+.error {
+  color: #c62828;
+}
+
+@media (max-width: 900px) {
+  .filtres {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,16 @@
+<div class="shell">
+  <header class="nav">
+    <a class="logo" routerLink="/dashboard">Rick & Morty Explorer</a>
+    <nav>
+      <a routerLink="/dashboard" routerLinkActive="active">Tableau de bord</a>
+      <a routerLink="/characters" routerLinkActive="active">Personnages</a>
+      <a routerLink="/locations" routerLinkActive="active">Lieux</a>
+      <a routerLink="/episodes" routerLinkActive="active">Episodes</a>
+      <a routerLink="/favoris" routerLinkActive="active">Favoris ({{ favoris.nombre() }})</a>
+      <a routerLink="/contact" routerLinkActive="active">Contact</a>
+    </nav>
+  </header>
+  <main>
+    <router-outlet />
+  </main>
+</div>

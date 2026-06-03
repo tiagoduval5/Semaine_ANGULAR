@@ -1,0 +1,19 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  font-family: Inter, 'Segoe UI', Roboto, Arial, sans-serif;
+  background: radial-gradient(circle at top, #f4efff 0%, #fbfbff 40%, #ffffff 100%);
+  color: #1c1630;
+}
+
+button {
+  font-family: inherit;
+}
+
+a {
+  color: #5d3ea3;
+}
