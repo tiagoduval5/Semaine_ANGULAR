@@ -47,21 +47,6 @@ Ouvrir `http://localhost:4200`.
 9. **Lazy loading** : le bundle initial est plus leger ; `favoris` et `contact` ne chargent qu'a la navigation.
 10. *(Bonus non implemente ici)* GraphQL permettrait personnage + lieu + episodes en une requete.
 
-## Captures d'ecran
-
-Placer les captures dans `screenshots/` :
-
-- `01-characters-list.png`
-- `02-recherche-filtre.png`
-- `03-character-detail.png`
-- `04-relations.png`
-- `05-location-detail.png`
-- `06-favoris.png`
-- `07-dashboard.png`
-- `08-contact-erreurs.png`
-- `09-loading-erreur.png`
-- `10-arborescence.png`
-
 ## Arborescence
 
 ```
