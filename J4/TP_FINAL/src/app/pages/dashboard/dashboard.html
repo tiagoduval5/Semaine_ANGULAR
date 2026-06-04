@@ -1,6 +1,5 @@
 <section class="dashboard">
   <h1>Tableau de bord</h1>
-  <p class="intro">Quelques chiffres tires de l'API Rick and Morty.</p>
 
   @if (chargement()) {
     <app-loader />
@@ -10,22 +9,22 @@
     <div class="stats">
       <article>
         <h2>{{ totalPersonnages() }}</h2>
-        <p>Personnages au total</p>
+        <p>Personnages</p>
         <a routerLink="/characters">Voir la liste</a>
       </article>
       <article>
         <h2>{{ totalLieux() }}</h2>
-        <p>Lieux au total</p>
+        <p>Lieux</p>
         <a routerLink="/locations">Voir la liste</a>
       </article>
       <article>
         <h2>{{ totalEpisodes() }}</h2>
-        <p>Episodes au total</p>
+        <p>Episodes</p>
         <a routerLink="/episodes">Voir la liste</a>
       </article>
       <article class="fav">
         <h2>{{ favoris.nombre() }}</h2>
-        <p>Favoris enregistres</p>
+        <p>Favoris</p>
         <a routerLink="/favoris">Voir mes favoris</a>
       </article>
     </div>
