@@ -11,21 +11,18 @@ import { ChangeDetectionStrategy, Component, input, output } from '@angular/core
   `,
   styles: `
     .error {
-      color: #ff8a8a;
-      background: #2a1212;
-      border: 1px solid #5c2020;
-      border-radius: 10px;
+      color: var(--danger);
+      background: var(--danger-bg);
+      border: 1px solid rgba(255, 107, 138, 0.4);
+      border-radius: var(--radius-sm);
       padding: 14px;
       text-align: center;
     }
     button {
       margin-left: 8px;
-      border-radius: 8px;
-      border: 1px solid #7a3030;
-      background: #3a1515;
-      color: #fff;
-      cursor: pointer;
-      padding: 6px 10px;
+      padding: 6px 12px;
+      border-color: rgba(255, 107, 138, 0.5);
+      background: rgba(255, 107, 138, 0.15);
     }
   `,
 })

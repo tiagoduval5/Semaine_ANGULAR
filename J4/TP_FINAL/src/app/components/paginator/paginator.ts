@@ -26,17 +26,14 @@ import { ChangeDetectionStrategy, Component, input, output } from '@angular/core
       gap: 12px;
       margin-top: 16px;
     }
-    button {
-      border: 1px solid #3d5f4a;
-      background: #1a2e24;
-      color: #b8f0c8;
-      border-radius: 8px;
-      padding: 8px 12px;
-      cursor: pointer;
+    span {
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      letter-spacing: 0.04em;
+      color: var(--text-soft);
     }
-    button:disabled {
-      opacity: 0.45;
-      cursor: not-allowed;
+    button {
+      padding: 8px 14px;
     }
   `,
 })

@@ -5,11 +5,11 @@ export class StatusPipe implements PipeTransform {
   transform(value: string): string {
     switch (value) {
       case 'Alive':
-        return '🟢 Vivant';
+        return '💚 Vivant';
       case 'Dead':
-        return '🔴 Mort';
+        return '💀 Mort';
       default:
-        return '⚪ Inconnu';
+        return '👽 Inconnu';
     }
   }
 }

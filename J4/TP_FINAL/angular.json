@@ -60,12 +60,16 @@
         },
         "serve": {
           "builder": "@angular/build:dev-server",
+          "options": {
+            "proxyConfig": "proxy.conf.json"
+          },
           "configurations": {
             "production": {
               "buildTarget": "TP_FINAL:build:production"
             },
             "development": {
-              "buildTarget": "TP_FINAL:build:development"
+              "buildTarget": "TP_FINAL:build:development",
+              "proxyConfig": "proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"

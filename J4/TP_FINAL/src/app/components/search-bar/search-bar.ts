@@ -16,11 +16,6 @@ import { FormsModule } from '@angular/forms';
   styles: `
     input {
       width: 100%;
-      padding: 10px 12px;
-      border-radius: 10px;
-      border: 1px solid #3d5f4a;
-      background: #0f1a14;
-      color: #e8fff0;
     }
   `,
 })

@@ -11,6 +11,8 @@ npm start
 
 Ouvrir `http://localhost:4200`.
 
+> **GraphQL (bonus)** : `npm start` active le proxy vers `/graphql`. Si tu vois **404** sur `POST /graphql`, arrête l’ancien `ng serve` (Ctrl+C) et relance — un serveur lancé avant le proxy ne l’applique pas. Dans Network, l’URL doit être `localhost:4200/graphql`, pas `rickandmortyapi.com`.
+
 ## Fonctionnalites realisees
 
 - [x] 5 modeles (`Info`, `ApiResponse`, `Character`, `Location`, `Episode`)
@@ -23,6 +25,7 @@ Ouvrir `http://localhost:4200`.
 - [x] Dashboard avec statistiques et repartition des favoris
 - [x] Formulaire de contact reactif valide
 - [x] 5 composants dumb + 2 pipes + `OnPush`
+- [x] **Bonus GraphQL** : liste personnages via `https://rickandmortyapi.com/graphql` (Apollo)
 
 ## Design patterns
 
@@ -45,7 +48,7 @@ Ouvrir `http://localhost:4200`.
 7. **Reactive Forms** : validation structuree, testable, controle fine des erreurs champ par champ.
 8. **Relations** : extraction d'id depuis les URLs (`extraireIdDepuisUrl`) puis `getMany` sur character/episode.
 9. **Lazy loading** : le bundle initial est plus leger ; `favoris` et `contact` ne chargent qu'a la navigation.
-10. *(Bonus non implemente ici)* GraphQL permettrait personnage + lieu + episodes en une requete.
+10. **GraphQL (bonus)** : `CharacterGraphqlService` — une requête `gql` avec variables `page`, `name`, `status` renvoie personnages + `location` + `episode` ; le reste de l'app reste en REST.
 
 ## Arborescence
 
@@ -53,7 +56,9 @@ Ouvrir `http://localhost:4200`.
 src/app/
 ├── pages/
 ├── components/
+├── graphql.provider.ts
 ├── services/
+│   └── character-graphql.service.ts  (bonus)
 ├── models/
 ├── pipes/
 ├── utils/

@@ -1,3 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;1,9..40,400&family=Orbitron:wght@600;700&display=swap');
+
+:root {
+  --bg-deep: #070512;
+  --bg-mid: #120a2a;
+  --bg-card: rgba(28, 18, 52, 0.88);
+  --bg-card-hover: rgba(42, 28, 78, 0.95);
+  --border: rgba(151, 206, 76, 0.28);
+  --border-bright: rgba(0, 212, 255, 0.45);
+  --accent: #97ce4c;
+  --accent-cyan: #00d4ff;
+  --accent-pink: #e056fd;
+  --text: #f4f0ff;
+  --text-muted: #9d94c4;
+  --text-soft: #c4b8e8;
+  --danger: #ff6b8a;
+  --danger-bg: rgba(80, 20, 48, 0.7);
+  --radius: 14px;
+  --radius-sm: 10px;
+  --shadow-card: 0 12px 40px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(151, 206, 76, 0.08);
+  --font-display: 'Orbitron', system-ui, sans-serif;
+  --font-body: 'DM Sans', 'Segoe UI', sans-serif;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -5,13 +29,25 @@
 html,
 body {
   margin: 0;
-  font-family: Inter, 'Segoe UI', Roboto, Arial, sans-serif;
-  background: #08110d;
-  color: #e8fff0;
+  min-height: 100%;
+  font-family: var(--font-body);
+  background: var(--bg-deep);
+  color: var(--text);
+  background-image:
+    radial-gradient(ellipse 120% 80% at 10% -20%, rgba(224, 86, 253, 0.18), transparent 50%),
+    radial-gradient(ellipse 90% 60% at 90% 0%, rgba(0, 212, 255, 0.14), transparent 45%),
+    radial-gradient(circle at 50% 100%, rgba(151, 206, 76, 0.08), transparent 40%),
+    linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-mid) 100%);
+  background-attachment: fixed;
 }
 
 a {
-  color: #7dffb0;
+  color: var(--accent-cyan);
+  transition: color 0.15s ease;
+}
+
+a:hover {
+  color: var(--accent);
 }
 
 button,
@@ -19,4 +55,165 @@ input,
 select,
 textarea {
   font-family: inherit;
+}
+
+/* ——— Pages communes ——— */
+.page h1 {
+  margin-top: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 3vw, 1.75rem);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--text);
+  text-shadow: 0 0 24px rgba(0, 212, 255, 0.25);
+}
+
+.intro {
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-bottom: 1.25rem;
+}
+
+.intro strong {
+  color: var(--accent-cyan);
+}
+
+.back {
+  display: inline-block;
+  margin-bottom: 12px;
+  color: var(--text-soft);
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.back:hover {
+  color: var(--accent-cyan);
+}
+
+.grille {
+  display: grid;
+  gap: 14px;
+}
+
+input:not([type='checkbox']),
+select,
+textarea {
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: rgba(8, 5, 18, 0.75);
+  color: var(--text);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--border-bright);
+  box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.15);
+}
+
+button {
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-bright);
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(151, 206, 76, 0.15));
+  color: var(--text);
+  cursor: pointer;
+  font-weight: 600;
+  transition: transform 0.12s ease, box-shadow 0.15s ease;
+}
+
+button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(0, 212, 255, 0.2);
+}
+
+button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* Cartes lieux / épisodes (sans image API) */
+.carte-icone {
+  display: flex;
+  flex-direction: column;
+  min-height: 220px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.carte-icone .entete {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 108px;
+  margin-bottom: 12px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+}
+
+.carte-icone .entete--lieu {
+  background: linear-gradient(145deg, rgba(0, 212, 255, 0.18), rgba(151, 206, 76, 0.1));
+}
+
+.carte-icone .entete--episode {
+  background: linear-gradient(145deg, rgba(224, 86, 253, 0.2), rgba(0, 212, 255, 0.12));
+}
+
+.carte-icone .emoji {
+  font-size: 2.4rem;
+  line-height: 1;
+}
+
+.carte-icone .badge {
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(7, 5, 18, 0.55);
+  border: 1px solid var(--border-bright);
+  color: var(--accent-cyan);
+}
+
+.carte-icone .code-episode {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  letter-spacing: 0.08em;
+  color: var(--accent-pink);
+}
+
+.carte-icone .corps {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.carte-icone h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  line-height: 1.35;
+  color: var(--text);
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  min-height: 2.5em;
+}
+
+.carte-icone .meta {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.35;
+}
+
+.carte-icone .meta-accent {
+  color: var(--accent);
+  font-weight: 600;
 }

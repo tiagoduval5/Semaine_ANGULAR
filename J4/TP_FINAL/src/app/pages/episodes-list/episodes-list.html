@@ -9,10 +9,15 @@
   } @else {
     <div class="grille">
       @for (ep of episodes(); track ep.id) {
-        <a class="carte" [routerLink]="['/episodes', ep.id]">
-          <strong>{{ ep.episode }}</strong>
-          <h3>{{ ep.name | truncate: 45 }}</h3>
-          <p>{{ ep.air_date }}</p>
+        <a class="carte carte-icone" [routerLink]="['/episodes', ep.id]">
+          <div class="entete entete--episode">
+            <span class="emoji" aria-hidden="true">📺</span>
+            <span class="code-episode">{{ ep.episode }}</span>
+          </div>
+          <div class="corps">
+            <h3>{{ ep.name | truncate: 45 }}</h3>
+            <p class="meta">📅 {{ ep.air_date | dateFr }}</p>
+          </div>
         </a>
       }
     </div>

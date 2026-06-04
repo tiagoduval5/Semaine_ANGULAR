@@ -9,7 +9,7 @@
     <section class="fiche">
       <h1>{{ ep.name }}</h1>
       <p><strong>Code :</strong> {{ ep.episode }}</p>
-      <p><strong>Date :</strong> {{ ep.air_date }}</p>
+      <p><strong>Date :</strong> {{ ep.air_date | dateFr }}</p>
 
       <h2>Personnages de l'episode</h2>
       <div class="casting">

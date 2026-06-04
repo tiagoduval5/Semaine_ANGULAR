@@ -1,11 +1,3 @@
-.page h1 {
-  margin-top: 0;
-}
-
-.intro {
-  color: #9ec7ab;
-}
-
 .filtres {
   display: grid;
   grid-template-columns: 1fr 220px;
@@ -13,18 +5,14 @@
   margin-bottom: 16px;
 }
 
-.filtres select {
-  padding: 10px;
-  border-radius: 10px;
-  border: 1px solid #3d5f4a;
-  background: #0f1a14;
-  color: #e8fff0;
+.grille {
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  align-items: stretch;
 }
 
-.grille {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
-  gap: 14px;
+.grille app-character-card {
+  display: block;
+  height: 100%;
 }
 
 @media (max-width: 700px) {

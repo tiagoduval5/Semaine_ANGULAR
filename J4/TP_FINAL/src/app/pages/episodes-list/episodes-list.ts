@@ -10,6 +10,7 @@ import { LoaderComponent } from '../../components/loader/loader';
 import { PaginatorComponent } from '../../components/paginator/paginator';
 import { Episode } from '../../models/episode.model';
 import { EpisodeService } from '../../services/episode.service';
+import { DateFrPipe } from '../../pipes/date-fr.pipe';
 import { TruncatePipe } from '../../pipes/truncate.pipe';
 
 @Component({
@@ -21,6 +22,7 @@ import { TruncatePipe } from '../../pipes/truncate.pipe';
     LoaderComponent,
     ErrorMessageComponent,
     TruncatePipe,
+    DateFrPipe,
   ],
   templateUrl: './episodes-list.html',
   styleUrl: './episodes-list.scss',

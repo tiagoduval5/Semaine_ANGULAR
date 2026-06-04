@@ -1,0 +1,7 @@
+{
+  "/graphql": {
+    "target": "https://rickandmortyapi.com",
+    "secure": true,
+    "changeOrigin": true
+  }
+}

@@ -14,12 +14,13 @@ import { Character } from '../../models/character.model';
 import { Episode } from '../../models/episode.model';
 import { CharacterService } from '../../services/character.service';
 import { EpisodeService } from '../../services/episode.service';
+import { DateFrPipe } from '../../pipes/date-fr.pipe';
 import { extraireIdDepuisUrl } from '../../utils/url.util';
 
 @Component({
   selector: 'app-episode-detail',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [RouterLink, LoaderComponent, ErrorMessageComponent],
+  imports: [RouterLink, LoaderComponent, ErrorMessageComponent, DateFrPipe],
   templateUrl: './episode-detail.html',
   styleUrl: './episode-detail.scss',
 })

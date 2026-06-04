@@ -24,7 +24,7 @@ import { PaginatorComponent } from '../../components/paginator/paginator';
 import { SearchBarComponent } from '../../components/search-bar/search-bar';
 import { ApiResponse } from '../../models/api-response.model';
 import { Character } from '../../models/character.model';
-import { CharacterService } from '../../services/character.service';
+import { CharacterGraphqlService } from '../../services/character-graphql.service';
 import { FavorisService } from '../../services/favoris.service';
 
 type EtatListe = {
@@ -49,7 +49,7 @@ type EtatListe = {
   styleUrl: './characters-list.scss',
 })
 export class CharactersListComponent {
-  private characterService = inject(CharacterService);
+  private characterGraphql = inject(CharacterGraphqlService);
   protected favoris = inject(FavorisService);
 
   pageCourante = signal(1);
@@ -58,13 +58,17 @@ export class CharactersListComponent {
   rafraichir = signal(0);
 
   etat$ = combineLatest([
-    toObservable(this.pageCourante),
+    toObservable(this.pageCourante).pipe(distinctUntilChanged()),
     toObservable(this.nomRecherche).pipe(debounceTime(300), distinctUntilChanged()),
-    toObservable(this.statusFiltre),
+    toObservable(this.statusFiltre).pipe(distinctUntilChanged()),
     toObservable(this.rafraichir),
   ]).pipe(
+    debounceTime(50),
+    distinctUntilChanged(
+      ([p, n, s, r], [p2, n2, s2, r2]) => p === p2 && n === n2 && s === s2 && r === r2,
+    ),
     switchMap(([page, name, status]) =>
-      this.characterService.getAll(page, name || undefined, status || undefined).pipe(
+      this.characterGraphql.getAll(page, name || undefined, status || undefined).pipe(
         map(
           (data): EtatListe => ({
             loading: false,
