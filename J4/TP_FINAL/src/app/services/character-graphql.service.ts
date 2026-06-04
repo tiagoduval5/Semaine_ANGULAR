@@ -2,6 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { Apollo, gql } from 'apollo-angular';
 import { Observable, catchError, map } from 'rxjs';
 import { ApiResponse } from '../models/api-response.model';
+import { environment } from '../../environments/environment';
 import { Character } from '../models/character.model';
 import { CharacterService } from './character.service';
 
@@ -91,7 +92,7 @@ export class CharacterGraphqlService {
   }
 
   private versCharacter(p: PersonnageGraphql): Character {
-    const base = 'https://rickandmortyapi.com/api';
+    const base = environment.apiBaseUrl;
     return {
       id: p.id,
       name: p.name,

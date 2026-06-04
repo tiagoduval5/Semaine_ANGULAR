@@ -7,7 +7,6 @@ import {
   signal,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { forkJoin } from 'rxjs';
 import { ErrorMessageComponent } from '../../components/error-message/error-message';
 import { LoaderComponent } from '../../components/loader/loader';
 import { Character } from '../../models/character.model';
@@ -17,6 +16,8 @@ import { EpisodeService } from '../../services/episode.service';
 import { FavorisService } from '../../services/favoris.service';
 import { StatusPipe } from '../../pipes/status.pipe';
 import { TruncatePipe } from '../../pipes/truncate.pipe';
+import { chargerParLots } from '../../utils/batch-load.util';
+import { decouperEnLots } from '../../utils/lots.util';
 import { extraireIdDepuisUrl } from '../../utils/url.util';
 
 @Component({
@@ -60,11 +61,9 @@ export class CharacterDetailComponent implements OnInit {
           this.chargement.set(false);
           return;
         }
-        const lots: number[][] = [];
-        for (let i = 0; i < idsEpisodes.length; i += 20) {
-          lots.push(idsEpisodes.slice(i, i + 20));
-        }
-        forkJoin(lots.map((lot) => this.episodeService.getMany(lot))).subscribe({
+        chargerParLots(decouperEnLots(idsEpisodes), (lot) =>
+          this.episodeService.getMany(lot),
+        ).subscribe({
           next: (resultats) => {
             this.episodes.set(resultats.flat());
             this.chargement.set(false);

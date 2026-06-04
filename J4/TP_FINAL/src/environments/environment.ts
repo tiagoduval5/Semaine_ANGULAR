@@ -1,5 +1,5 @@
 export const environment = {
   production: false,
-  apiBaseUrl: 'https://rickandmortyapi.com/api',
+  apiBaseUrl: '/api',
   graphqlUrl: '/graphql',
 };

@@ -7,7 +7,6 @@ import {
   signal,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { forkJoin } from 'rxjs';
 import { ErrorMessageComponent } from '../../components/error-message/error-message';
 import { LoaderComponent } from '../../components/loader/loader';
 import { Character } from '../../models/character.model';
@@ -15,6 +14,8 @@ import { Episode } from '../../models/episode.model';
 import { CharacterService } from '../../services/character.service';
 import { EpisodeService } from '../../services/episode.service';
 import { DateFrPipe } from '../../pipes/date-fr.pipe';
+import { chargerParLots } from '../../utils/batch-load.util';
+import { decouperEnLots } from '../../utils/lots.util';
 import { extraireIdDepuisUrl } from '../../utils/url.util';
 
 @Component({
@@ -51,11 +52,7 @@ export class EpisodeDetailComponent implements OnInit {
           this.chargement.set(false);
           return;
         }
-        const lots: number[][] = [];
-        for (let i = 0; i < ids.length; i += 20) {
-          lots.push(ids.slice(i, i + 20));
-        }
-        forkJoin(lots.map((lot) => this.characterService.getMany(lot))).subscribe({
+        chargerParLots(decouperEnLots(ids), (lot) => this.characterService.getMany(lot)).subscribe({
           next: (resultats) => {
             this.personnages.set(resultats.flat());
             this.chargement.set(false);

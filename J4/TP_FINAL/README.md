@@ -11,7 +11,7 @@ npm start
 
 Ouvrir `http://localhost:4200`.
 
-> **GraphQL (bonus)** : `npm start` active le proxy vers `/graphql`. Si tu vois **404** sur `POST /graphql`, arrête l’ancien `ng serve` (Ctrl+C) et relance — un serveur lancé avant le proxy ne l’applique pas. Dans Network, l’URL doit être `localhost:4200/graphql`, pas `rickandmortyapi.com`.
+> **Dev local** : `npm start` active le proxy (`/api` + `/graphql`). Dans Network, les requêtes doivent aller vers `localhost:4200`, pas directement `rickandmortyapi.com`. Si CORS ou 404, arrête `ng serve` (Ctrl+C) et relance.
 
 ## Fonctionnalites realisees
 
@@ -56,9 +56,7 @@ Ouvrir `http://localhost:4200`.
 src/app/
 ├── pages/
 ├── components/
-├── graphql.provider.ts
 ├── services/
-│   └── character-graphql.service.ts  (bonus)
 ├── models/
 ├── pipes/
 ├── utils/
