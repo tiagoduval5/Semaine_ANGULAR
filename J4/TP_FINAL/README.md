@@ -11,7 +11,7 @@ npm start
 
 Ouvrir `http://localhost:4200`.
 
-> **Dev local** : `npm start` active le proxy (`/api` + `/graphql`). Dans Network, les requêtes doivent aller vers `localhost:4200`, pas directement `rickandmortyapi.com`. Si CORS ou 404, arrête `ng serve` (Ctrl+C) et relance.
+> **Dev local** : `npm start` active le proxy (`/api` + `/graphql`). Dans Network, les requêtes doivent aller vers `localhost:4200`, pas directement `rickandmortyapi.com`.
 
 ## Fonctionnalites realisees
 

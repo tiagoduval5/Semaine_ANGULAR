@@ -8,13 +8,15 @@ import {
 import { toObservable } from '@angular/core/rxjs-interop';
 import { FormsModule } from '@angular/forms';
 import {
+  asyncScheduler,
   catchError,
   combineLatest,
+  concat,
   debounceTime,
   distinctUntilChanged,
   map,
+  observeOn,
   of,
-  startWith,
   switchMap,
 } from 'rxjs';
 import { CharacterCardComponent } from '../../components/character-card/character-card';
@@ -67,25 +69,29 @@ export class CharactersListComponent {
     distinctUntilChanged(
       ([p, n, s, r], [p2, n2, s2, r2]) => p === p2 && n === n2 && s === s2 && r === r2,
     ),
-    switchMap(([page, name, status]) =>
-      this.characterGraphql.getAll(page, name || undefined, status || undefined).pipe(
-        map(
-          (data): EtatListe => ({
-            loading: false,
-            data,
-            error: null,
-          }),
+    switchMap(([page, name, status]) => {
+      const chargement: EtatListe = { loading: true, data: null, error: null };
+      return concat(
+        of(chargement),
+        this.characterGraphql.getAll(page, name || undefined, status || undefined).pipe(
+          observeOn(asyncScheduler),
+          map(
+            (data): EtatListe => ({
+              loading: false,
+              data,
+              error: null,
+            }),
+          ),
+          catchError(() =>
+            of({
+              loading: false,
+              data: null,
+              error: 'Erreur lors du chargement des personnages.',
+            }),
+          ),
         ),
-        startWith<EtatListe>({ loading: true, data: null, error: null }),
-        catchError(() =>
-          of({
-            loading: false,
-            data: null,
-            error: 'Erreur lors du chargement des personnages.',
-          }),
-        ),
-      ),
-    ),
+      );
+    }),
   );
 
   onRecherche(terme: string): void {
