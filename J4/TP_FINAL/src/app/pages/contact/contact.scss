@@ -1,7 +1,45 @@
+.contact-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contact-entete {
+  width: 100%;
+  max-width: 520px;
+  text-align: center;
+}
+
+.contact-entete h1 {
+  margin-top: 0;
+}
+
+.contact-bloc {
+  width: 100%;
+  max-width: 520px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.succes {
+  display: inline-block;
+  width: auto;
+  max-width: 100%;
+  margin: 0 0 14px;
+  padding: 10px 16px;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--accent);
+  border-radius: var(--radius-sm);
+  background: rgba(151, 206, 76, 0.12);
+  border: 1px solid var(--border);
+}
+
 form {
+  width: 100%;
   display: grid;
   gap: 12px;
-  max-width: 520px;
   padding: 20px;
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -14,18 +52,15 @@ label {
   gap: 6px;
   font-size: 0.9rem;
   color: var(--text-soft);
+  text-align: left;
+}
+
+button[type='submit'] {
+  justify-self: center;
+  min-width: 140px;
 }
 
 .err {
   color: var(--danger);
   font-size: 13px;
-}
-
-.succes {
-  color: var(--accent);
-  margin-bottom: 12px;
-  padding: 12px;
-  border-radius: var(--radius-sm);
-  background: rgba(151, 206, 76, 0.12);
-  border: 1px solid var(--border);
 }

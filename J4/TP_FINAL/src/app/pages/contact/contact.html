@@ -1,12 +1,15 @@
-<section class="page">
-  <h1>Contact</h1>
-  <p class="intro">Remplissez le formulaire ci-dessous pour nous envoyer un message.</p>
+<section class="page contact-page">
+  <header class="contact-entete">
+    <h1>Contact</h1>
+    <p class="intro">Remplissez le formulaire ci-dessous pour nous envoyer un message.</p>
+  </header>
 
-  @if (messageEnvoye()) {
-    <p class="succes">✅ Message envoye avec succes. Merci.</p>
-  }
+  <div class="contact-bloc">
+    @if (messageEnvoye()) {
+      <p class="succes" role="status">✅ Message envoyé avec succès. Merci.</p>
+    }
 
-  <form [formGroup]="formulaire" (ngSubmit)="envoyer()">
+    <form [formGroup]="formulaire" (ngSubmit)="envoyer()">
     <label>
       Nom
       <input formControlName="nom" />
@@ -32,5 +35,6 @@
     </label>
 
     <button type="submit" [disabled]="formulaire.invalid">Envoyer</button>
-  </form>
+    </form>
+  </div>
 </section>
