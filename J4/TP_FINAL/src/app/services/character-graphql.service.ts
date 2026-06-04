@@ -5,7 +5,6 @@ import { ApiResponse } from '../models/api-response.model';
 import { Character } from '../models/character.model';
 import { CharacterService } from './character.service';
 
-/** Requête bonus : pagination + recherche + relations (lieu, épisodes) en un seul appel. */
 const LISTE_PERSONNAGES = gql`
   query Personnages($page: Int, $name: String, $status: String) {
     characters(page: $page, filter: { name: $name, status: $status }) {
