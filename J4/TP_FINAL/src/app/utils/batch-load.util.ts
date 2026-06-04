@@ -1,6 +1,5 @@
 import { concatMap, from, map, Observable, of, toArray } from 'rxjs';
 
-/** Charge les lots l'un après l'autre pour limiter le rate-limit de l'API. */
 export function chargerParLots<T>(
   lots: number[][],
   fetchLot: (ids: number[]) => Observable<T[]>,
