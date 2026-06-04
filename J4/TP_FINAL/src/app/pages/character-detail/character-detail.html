@@ -1,50 +1,73 @@
-<a class="back" routerLink="/characters">← Retour a la liste</a>
+<section class="page fiche-page">
+  <a class="back" routerLink="/characters">← Retour à la liste</a>
 
-@if (chargement()) {
-  <app-loader />
-} @else if (erreur()) {
-  <app-error-message [message]="erreur()!" (retry)="chargerFiche()" />
-} @else {
-  @if (personnage(); as p) {
-    <section class="fiche">
-      <img [src]="p.image" [alt]="p.name" />
-      <div>
-        <h1>{{ p.name }}</h1>
-        <p><strong>Statut :</strong> {{ p.status | status }}</p>
-        <p><strong>Especes :</strong> {{ p.species }}</p>
-        <p><strong>Genre :</strong> {{ p.gender }}</p>
-        <p>
-          <strong>Origine :</strong>
-          @if (idOrigine(p.origin.url); as oid) {
-            <a [routerLink]="['/locations', oid]">{{ p.origin.name }}</a>
-          } @else {
-            {{ p.origin.name }}
-          }
-        </p>
-        <p>
-          <strong>Lieu actuel :</strong>
-          @if (idLieu(p.location.url); as lid) {
-            <a [routerLink]="['/locations', lid]">{{ p.location.name }}</a>
-          } @else {
-            {{ p.location.name }}
-          }
-        </p>
-        <button type="button" (click)="favoris.toggle(p)">
-          {{ favoris.isFavori(p.id) ? '⭐ Retirer des favoris' : '☆ Ajouter aux favoris' }}
-        </button>
-
-        <h2>Episodes</h2>
-        <div class="liens">
-          @for (ep of episodes(); track ep.id) {
-            <a class="mini-carte" [routerLink]="['/episodes', ep.id]">
-              <strong>{{ ep.episode }}</strong>
-              <span>{{ ep.name | truncate: 40 }}</span>
-            </a>
-          } @empty {
-            <p>Aucun episode lie.</p>
-          }
+  @if (chargement()) {
+    <app-loader />
+  } @else if (erreur()) {
+    <app-error-message [message]="erreur()!" (retry)="chargerFiche()" />
+  } @else {
+    @if (personnage(); as p) {
+      <article class="fiche">
+        <div class="fiche-hero">
+          <figure class="fiche-media">
+            <img [src]="p.image" [alt]="p.name" />
+          </figure>
+          <div class="fiche-infos">
+            <h1>{{ p.name }}</h1>
+            <dl class="meta-liste">
+              <div class="meta-ligne">
+                <dt>Statut</dt>
+                <dd>{{ p.status | status }}</dd>
+              </div>
+              <div class="meta-ligne">
+                <dt>Espèce</dt>
+                <dd>{{ p.species }}</dd>
+              </div>
+              <div class="meta-ligne">
+                <dt>Genre</dt>
+                <dd>{{ p.gender }}</dd>
+              </div>
+              <div class="meta-ligne">
+                <dt>Origine</dt>
+                <dd>
+                  @if (idOrigine(p.origin.url); as oid) {
+                    <a [routerLink]="['/locations', oid]">{{ p.origin.name }}</a>
+                  } @else {
+                    {{ p.origin.name }}
+                  }
+                </dd>
+              </div>
+              <div class="meta-ligne">
+                <dt>Lieu actuel</dt>
+                <dd>
+                  @if (idLieu(p.location.url); as lid) {
+                    <a [routerLink]="['/locations', lid]">{{ p.location.name }}</a>
+                  } @else {
+                    {{ p.location.name }}
+                  }
+                </dd>
+              </div>
+            </dl>
+            <button type="button" class="fiche-action" (click)="favoris.toggle(p)">
+              {{ favoris.isFavori(p.id) ? '⭐ Retirer des favoris' : '☆ Ajouter aux favoris' }}
+            </button>
+          </div>
         </div>
-      </div>
-    </section>
+
+        <section class="fiche-section">
+          <h2>Épisodes</h2>
+          <div class="liens">
+            @for (ep of episodes(); track ep.id) {
+              <a class="mini-carte" [routerLink]="['/episodes', ep.id]">
+                <strong>{{ ep.episode }}</strong>
+                <span>{{ ep.name | truncate: 40 }}</span>
+              </a>
+            } @empty {
+              <p class="fiche-vide">Aucun épisode lié.</p>
+            }
+          </div>
+        </section>
+      </article>
+    }
   }
-}
+</section>

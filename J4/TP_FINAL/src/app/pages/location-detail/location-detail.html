@@ -1,27 +1,44 @@
-<a class="back" routerLink="/locations">← Retour a la liste</a>
+<section class="page fiche-page">
+  <a class="back" routerLink="/locations">← Retour à la liste</a>
 
-@if (chargement()) {
-  <app-loader />
-} @else if (erreur()) {
-  <app-error-message [message]="erreur()!" (retry)="chargerFiche()" />
-} @else {
-  @if (lieu(); as l) {
-    <section class="fiche">
-      <h1>{{ l.name }}</h1>
-      <p><strong>Type :</strong> {{ l.type }}</p>
-      <p><strong>Dimension :</strong> {{ l.dimension }}</p>
+  @if (chargement()) {
+    <app-loader />
+  } @else if (erreur()) {
+    <app-error-message [message]="erreur()!" (retry)="chargerFiche()" />
+  } @else {
+    @if (lieu(); as l) {
+      <article class="fiche">
+        <header class="fiche-entete-lieu">
+          <span class="fiche-emoji" aria-hidden="true">🪐</span>
+          <div class="fiche-entete-texte">
+            <h1>{{ l.name }}</h1>
+            <dl class="meta-liste meta-liste--inline">
+              <div class="meta-ligne">
+                <dt>Type</dt>
+                <dd>{{ l.type }}</dd>
+              </div>
+              <div class="meta-ligne">
+                <dt>Dimension</dt>
+                <dd>{{ l.dimension }}</dd>
+              </div>
+            </dl>
+          </div>
+        </header>
 
-      <h2>Residents</h2>
-      <div class="residents">
-        @for (r of residents(); track r.id) {
-          <a class="resident" [routerLink]="['/characters', r.id]">
-            <img [src]="r.image" [alt]="r.name" />
-            <span>{{ r.name }}</span>
-          </a>
-        } @empty {
-          <p>Aucun resident connu pour ce lieu.</p>
-        }
-      </div>
-    </section>
+        <section class="fiche-section">
+          <h2>Résidents</h2>
+          <div class="residents">
+            @for (r of residents(); track r.id) {
+              <a class="resident" [routerLink]="['/characters', r.id]">
+                <img [src]="r.image" [alt]="r.name" />
+                <span>{{ r.name }}</span>
+              </a>
+            } @empty {
+              <p class="fiche-vide">Aucun résident connu pour ce lieu.</p>
+            }
+          </div>
+        </section>
+      </article>
+    }
   }
-}
+</section>

@@ -1,27 +1,36 @@
-<a class="back" routerLink="/episodes">← Retour a la liste</a>
+<section class="page fiche-page">
+  <a class="back" routerLink="/episodes">← Retour à la liste</a>
 
-@if (chargement()) {
-  <app-loader />
-} @else if (erreur()) {
-  <app-error-message [message]="erreur()!" (retry)="chargerFiche()" />
-} @else {
-  @if (episode(); as ep) {
-    <section class="fiche">
-      <h1>{{ ep.name }}</h1>
-      <p><strong>Code :</strong> {{ ep.episode }}</p>
-      <p><strong>Date :</strong> {{ ep.air_date | dateFr }}</p>
+  @if (chargement()) {
+    <app-loader />
+  } @else if (erreur()) {
+    <app-error-message [message]="erreur()!" (retry)="chargerFiche()" />
+  } @else {
+    @if (episode(); as ep) {
+      <article class="fiche">
+        <header class="fiche-entete-episode">
+          <span class="fiche-emoji" aria-hidden="true">📺</span>
+          <div class="fiche-entete-texte">
+            <p class="fiche-code">{{ ep.episode }}</p>
+            <h1>{{ ep.name }}</h1>
+            <p class="fiche-date">📅 {{ ep.air_date | dateFr }}</p>
+          </div>
+        </header>
 
-      <h2>Personnages de l'episode</h2>
-      <div class="casting">
-        @for (p of personnages(); track p.id) {
-          <a class="perso" [routerLink]="['/characters', p.id]">
-            <img [src]="p.image" [alt]="p.name" />
-            <span>{{ p.name }}</span>
-          </a>
-        } @empty {
-          <p>Aucun personnage lie.</p>
-        }
-      </div>
-    </section>
+        <section class="fiche-section">
+          <h2>Personnages de l'épisode</h2>
+          <div class="casting">
+            @for (p of personnages(); track p.id) {
+              <a class="perso" [routerLink]="['/characters', p.id]">
+                <img [src]="p.image" [alt]="p.name" />
+                <span>{{ p.name }}</span>
+              </a>
+            } @empty {
+              <p class="fiche-vide">Aucun personnage lié.</p>
+            }
+          </div>
+        </section>
+      </article>
+    }
   }
-}
+</section>
